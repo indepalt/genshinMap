@@ -13,7 +13,7 @@ var map = L.map("map", {
 	zoomControl: false
 });
 L.control.attribution({
-	prefix: "<a href='https://bbs.mihoyo.com/ys/article/1328298' target='_blank'>使用说明/米游社空荧酒馆</a>"
+	prefix: "<a href='https://github.com/chocosobo/genshinmap-ko/blob/master/README.md' target='_blank'>사용설명</a>"
 }).addTo(map);
 L.control.zoom({
 	zoomInTitle: '+',
@@ -177,7 +177,7 @@ function getIconInfo(Name) {
 		case "ST": { //神瞳
 			var icon_base = L.Icon.extend({
 				options: {
-					iconSize: [40, 40], // size of the icon
+					iconSize: [24, 24], // size of the icon
 					shadowSize: [50, 64], // size of the shadow
 					iconAnchor: [12, 12], // point of the icon which will correspond to marker's location
 					shadowAnchor: [4, 62], // the same for the shadow
@@ -325,7 +325,7 @@ function onEachFeature(feature, layer) {
 	// popupHtml += '<div class="myPopPicture">';
 	// popupHtml += '<img src=comment_png/' + key + '.jpg onerror="javascript:$(\'.myPopComment,.myPopPicture\').addClass(\'disable\');$(\'.myPopComment\').css({\'cursor\': \'default\'})">';
 	// popupHtml += '</div>';
-	// popupHtml += '<div class="' + switchClass + '" onclick="MarkPoint(this)" data-key="' + key + '"><p class="switchOff">未完成</p><p class="switchOn">已完成</p><div class="switchButton"><div class="switchButtonIcon"><p>未完成</p></div></div></div>';
+	// popupHtml += '<div class="' + switchClass + '" onclick="MarkPoint(this)" data-key="' + key + '"><p class="switchOff">미완료</p><p class="switchOn">완료</p><div class="switchButton"><div class="switchButtonIcon"><p>未完成</p></div></div></div>';
 	// popupHtml += '<div class="tipcard"></div>'
 	// popupHtml += '</div>';
 	layer.bindPopup();
@@ -450,7 +450,7 @@ function MarkPoint(element) {
 
 	var doneUrl = newValue ? "_done" : ""
 	if (layerNumber == 0 || layerNumber == 1) {
-		var iconUrl = "./imgs/icon_" + layerNumber + doneUrl + ".png";
+		var iconUrl = "./imgs/icon_" + layerNumber + doneUrl + ".svg";
 	} else {
 		var iconUrl = "./imgs/icon_" + layerNumber + doneUrl + ".png";
 	}
@@ -474,7 +474,7 @@ function MarkPoint(element) {
 		that.addClass("myPopSwitchDone");
 		that.removeClass("myPopSwitchTodo");
 		setTimeout(function () {
-			that.find(".switchButton p").html("완료됨");
+			that.find(".switchButton p").html("완료");
 		}, 100);
 		setTimeout(function () {
 			closePop();
@@ -501,7 +501,7 @@ for (let i = 0; i < typearray.length; i++) {
 			}
 			var doneUrl = markedFlag ? "_done" : ""
 			if (i == 0 || i == 1) {
-				var iconUrl = "./imgs/icon_" + i + doneUrl + ".png";
+				var iconUrl = "./imgs/icon_" + i + doneUrl + ".svg";
 			} else {
 				var iconUrl = "./imgs/icon_" + i + doneUrl + ".png";
 			}
@@ -579,7 +579,7 @@ map.on('popupopen', function (e) {
 	var key = className.substring(5, className.length);
 	var markedFlag = localStorage.getItem(key);
 	var switchClass = (!markedFlag) ? "myPopSwitchTodo" : "myPopSwitchDone";
-	var switchText = (!markedFlag) ? "미완료" : "완료됨";
+	var switchText = (!markedFlag) ? "미완료" : "완료";
 	popupHtml = `
 	<div class="myPopContainer">
 		<div class="myPopTitle">
@@ -595,7 +595,7 @@ map.on('popupopen', function (e) {
 		</div>
 		<div class="${switchClass}" onclick="MarkPoint(this)" data-key="${key}">
 			<p class="switchOff">미완료</p>
-			<p class="switchOn">완료됨</p>
+			<p class="switchOn">완료</p>
 			<div class="switchButton">
 				<div class="switchButtonIcon">
 					<p>${switchText}</p>
