@@ -2,6 +2,8 @@
 <html>
 
 <head>
+	<meta name="keywords" content="원신, 원신지도, 原神攻略, 원신상자위치" />
+	<meta name="description" content="원신 자원 지도。" />
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 	<title>원신지도</title>
 	<meta charset="utf-8">
@@ -31,6 +33,7 @@
 		<div class="person-div">
 			<a href="javascript:;" class="reg_log_link hd">로그인/등록</a>
 			<a href="javascript:;" class="save-btn disable hd">저장</a>
+			<a href="https://open.kakao.com/o/s4IJFqDc" target="_bal" class="zanzhu">개발자에게 까까 사주기</a>
 		</div>
 		<div class="topLine"></div>
 		<!-- 筛选器左侧页签 -->
@@ -46,10 +49,12 @@
 		<ul class="area-list-containor">
 			<a href="javascript:;" class="area-list-li-containor on" i_area="MD">
 				<span class="area-text">몬드</span>
+				<span class="area-text">蒙德</span>
 				<span class="area-img mengde on hd">area-img</span>
 			</a>
 			<a href="javascript:;" class="area-list-li-containor off" i_area="LY">
 				<span class="area-text">리월</span>
+				<span class="area-text">璃月</span>
 				<span class="area-img liyue hd off">area-img</span>
 			</a>
 			<a href="javascript:;" class="area-list-li-containor off undone">
@@ -370,13 +375,9 @@
 			//下载保存数据并复制到剪切板
 			$(".save-btn").click(function () {
 				var markedLog = []
-				for (var i = 0; i < 29; i++) {
-					for (var j = 1; j < 1200; j++) {
-						var key = i + "_" + j
-						if (localStorage.getItem(key)) {
-							markedLog.push(key)
-						}
-					}
+				for (var i = 0; i < localStorage.length; i++) {
+					var key = localStorage.key(i); //获取本地存储的Key
+					if (localStorage.getItem(key)==1) markedLog.push(key); //所有value
 				}
 				var eleLink = document.createElement('a');
 				eleLink.download = 'markers.json';
@@ -387,19 +388,10 @@
 				eleLink.click();
 				document.body.removeChild(eleLink);
 
-				var markedLog1 = []
-				for (var i = 0; i < 29; i++) {
-					for (var j = 1; j < 1200; j++) {
-						var key = i + "_" + j
-						if (localStorage.getItem(key)) {
-							markedLog1.push(key)
-						}
-					}
-				}
-				toolresult = JSON.stringify(markedLog1);
+				toolresult = JSON.stringify(markedLog);
 				var texts = toolresult
 				copyText(texts, function () {
-					alert('复制成功 \n复制内容' + texts)
+					alert('复制成功 \n复制内容:' + texts + '\n如果您在当前地图上有标记数据但是这里显示"[]",请与管理员联系恢复您的数据QQ790489566')
 				})
 				console.log(toolresult);
 			})
