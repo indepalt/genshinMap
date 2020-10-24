@@ -1,4 +1,3 @@
-//@ts-check
 //初始化地图
 t = L.latLngBounds([0, 0], [-66.5, 90]);
 var map = L.map("map", {
@@ -14,7 +13,7 @@ var map = L.map("map", {
 	zoomControl: false
 });
 L.control.attribution({
-	prefix: "<a href='https://gall.dcinside.com/mgallery/board/view?id=onshinproject&no=236904' target='_blank'>사용설명</a>"
+	prefix: "<a href='https://github.com/chocosobo/genshinmap-ko/blob/master/README.md' target='_blank'>사용설명</a>"
 }).addTo(map);
 L.control.zoom({
 	zoomInTitle: '+',
@@ -587,7 +586,6 @@ map.on('popupopen', function (e) {
 			<div class="myPopName" >${marker.feature.properties.popTitle}${marker.feature.id}</div>
 		</div>
 		<div class="myPopLine"></div>
-		<div class="myPopIssue" onclick="openIssue()">反馈<img class="myPopIssueIcon" src=imgs/con_img/popIssue.png></div>
 		<div class="myPopClose" onclick="closePop()"></div>
 		<div class="myPopComment">${marker.feature.properties.popupContent}
 			<img class="Select" src=imgs/con_img/Select.png>
