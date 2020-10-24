@@ -335,10 +335,6 @@ function onEachFeature(feature, layer) {
 function closePop() {
 	$(".leaflet-popup-close-button")[0].click();
 }
-function openIssue() {
-	alert("clicked openIssue");
-	createIssue("issueName", "issueContent", "null") 
-}
 
 //定义分类的数组，分别对应 物品层，物品Json名，物品icon类型，新增时在对应数组后增加对象即可
 var typearray = [
