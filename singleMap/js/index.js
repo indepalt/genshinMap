@@ -14,7 +14,7 @@ var map = L.map("map", {
 	zoomControl: false
 });
 L.control.attribution({
-	prefix: "<a href='https://github.com/chocosobo/genshinmap-ko/blob/master/README.md' target='_blank'>사용설명</a>"
+	prefix: "<a href='https://github.com/g4dra/genshinMap/blob/gh-pages/readme.md' target='_blank'>사용설명</a>"
 }).addTo(map);
 L.control.zoom({
 	zoomInTitle: '+',
