@@ -14,7 +14,7 @@ var map = L.map("map", {
 	zoomControl: false
 });
 L.control.attribution({
-	prefix: "<a href='https://bbs.mihoyo.com/ys/article/1328298' target='_blank'>使用说明/米游社空荧酒馆</a>"
+	prefix: "<a href='https://github.com/chocosobo/genshinmap-ko/blob/master/README.md' target='_blank'>사용설명</a>"
 }).addTo(map);
 L.control.zoom({
 	zoomInTitle: '+',
@@ -677,9 +677,7 @@ map.on('popupopen', function (e) {
 	var markedFlag = localStorage.getItem(key);
 	var switchClass = (!markedFlag) ? "myPopSwitchTodo" : "myPopSwitchDone";
 	var switchText = (!markedFlag) ? "미완료" : "완료";
-	const timeValue = localStorage.getItem('done_time_' + key)
-
-	var popupHtml = `
+	popupHtml = `
 	<div class="myPopContainer">
 		<div class="myPopTitle">
 			<div class="myPopName" >${marker.feature.properties.popTitle}${marker.feature.id}</div>

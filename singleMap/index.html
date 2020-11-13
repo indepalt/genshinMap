@@ -16,7 +16,6 @@
 	<script src="js/Cookie.js"></script>
 	<script src="js/gitFunctions.js"></script>
 	<script>
-		Login();
 		var _hmt = _hmt || [];
 		(function () {
 			var hm = document.createElement("script");
@@ -28,8 +27,6 @@
 </head>
 
 <body>
-	<iframe src="/Beta/Save/pop.html" class="savePop" style="display: none;"></iframe>
-	<div class="loading" style="display: none;"></div>
 	<div id='map'></div>
 	<div class="danjixiazai"></div>
 	<!-- 筛选器 -->
@@ -37,8 +34,7 @@
 		<img class="Background" src="imgs/con_img/Content.png">
 		<a href="javascript:;" class="fold-btn hd">fold</a>
 		<div class="person-div">
-			<div href="javascript:;" class="reg_log_link login-info"></div>
-			<a href="https://open.kakao.com/o/sxJrGwGc" target="_bal" class="zanzhu">도네이션</a>
+			<a href="javascript:;" class="reg_log_link hd">로그인/등록</a>
 			<a href="javascript:;" class="save-btn disable hd">저장</a>
 		</div>
 		<div class="topLine"></div>
@@ -71,7 +67,6 @@
 			</a>
 			<a href="javascript:;" class="area-list-li-containor off undone">
 				<span class="area-text">수메르</span>
-				<span class="area-text">须弥</span>
 				<span class="area-img xumi hd off">area-img</span>
 			</a>
 			<a href="javascript:;" class="area-list-li-containor off undone">
@@ -86,7 +81,7 @@
 		<!-- 筛选器下测已选项框体（占位元素，勿动） -->
 		<ul class="selector-list-containor">
 			<p style="display: none;"></p>
-			<p class="selector-hint">선택한 항목이 없습니다.</p>
+			<p class="selector-hint">선택한 항목이 없습니다</p>
 		</ul>
 		<!-- 筛选器筛选列表以及筛选项 -->
 		<div class="options-containor">
@@ -484,25 +479,9 @@
 		});
 		//初始化筛选器功能
 		$(document).ready(function () {
-			if (getToken()) {
-				console.log("온라인 모드 token: " + tokenPara)
-			} else {
-				console.log("오프라인 모드")
-			}
 			$(".con-type-label:first").trigger("click");
 			$(".reg_log_link").click(function () {
-				if (getToken()) {
-					if (window.confirm("로그아웃 하시겠습니까?")) {
-						removeCookie("gitee_Token"); //清空登录缓存
-						tokenPara = null; //清空登录缓存
-						canOpenSave = false; //不可打开存档框
-						$(".savePop").hide(); //关闭存档框
-						alert("성공적으로 로그아웃했습니다.");
-						location.reload()
-					}
-				} else {
-					jumpLogin();
-				}
+				alert("미개방 기능");
 			})
 			// function createIssue(issueName, issueContent, issueLabels) {
 			// 	console.log("clicked openIssue" + issueLabels);
@@ -523,11 +502,11 @@
 			}
 
 			//下载保存数据并复制到剪切板
-			function localSave() {
+			$(".save-btn").click(function () {
 				var markedLog = []
 				for (var i = 0; i < localStorage.length; i++) {
 					var key = localStorage.key(i); //获取本地存储的Key
-					if (localStorage.getItem(key) == 1) markedLog.push(key); //所有value
+					if (localStorage.getItem(key)==1) markedLog.push(key); //所有value
 				}
 				var eleLink = document.createElement('a');
 				eleLink.download = 'markers.json';
@@ -544,29 +523,6 @@
 					alert('복사성공! \n복사내용:' + texts + '\n마커 데이터가 여기 표시됩니다."[]",')
 				})
 				console.log(toolresult);
-			}
-			//存储
-			$(".savePop").hide();
-			$(".save-btn").click(function () {
-				if (getToken() == false) {
-					if (window.confirm("클라우드 저장을 이용하려면 로그인 해야합니다., 로그인 하시겠습니까?")) {
-						jumpLogin();
-					}
-				} else if (canOpenSave) {
-
-					$(".savePop").show();
-				}
-				//upLoadSaveData(localSave);
-			})
-
-			window.addEventListener('message', function (e) {
-				var data = e.data;
-				console.log(data);
-				if (data == "saveClose") {
-					$(".savePop").hide();
-				} else if (data == "upLoad") {
-					upLoadSaveData(localSave);
-				}
 			})
 
 			//单机跳转
@@ -701,32 +657,7 @@
 			document.addEventListener('gesturestart', function (event) {
 				event.preventDefault();
 			});
-		
-				if (getCookie("gitee_Token") != "notfound") {
-					$(".login-info")
-				.removeClass('reg_log_link').text("로딩중...")
-			  getGitUser(function(res) {
-				localStorage.setItem("user", JSON.stringify(res))
-				console.log('res', res)
-				$(".login-info")
-				.removeClass('reg_log_link')
-				.html(`
-				<div class="avatar-wrapper">
-					<img width="50" height="50" src="${res.avatar_url}" />
-					<div style="margin-left: 10px">${res.name}</div>
-				</div>`)
-			} )
 		}
-		}
-		$("body").click(function (){
-			$(".savePop").hide();
-		});
-		$(".save-btn").click(function (event){
-			event.stopPropagation();
-		});
-		$(".savePop").click(function (event){
-			event.stopPropagation();
-		});
 	</script>
 </body>
 
