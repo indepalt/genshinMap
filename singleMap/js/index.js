@@ -677,7 +677,9 @@ map.on('popupopen', function (e) {
 	var markedFlag = localStorage.getItem(key);
 	var switchClass = (!markedFlag) ? "myPopSwitchTodo" : "myPopSwitchDone";
 	var switchText = (!markedFlag) ? "미완료" : "완료";
-	popupHtml = `
+	const timeValue = localStorage.getItem('done_time_' + key)
+
+	var popupHtml = `
 	<div class="myPopContainer">
 		<div class="myPopTitle">
 			<div class="myPopName" >${marker.feature.properties.popTitle}${marker.feature.id}</div>

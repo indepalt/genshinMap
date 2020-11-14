@@ -35,6 +35,7 @@
 		<a href="javascript:;" class="fold-btn hd">fold</a>
 		<div class="person-div">
 			<a href="javascript:;" class="reg_log_link hd">로그인/등록</a>
+			<a href="https://open.kakao.com/o/sxJrGwGc" target="_bal" class="zanzhu">도네이션</a>
 			<a href="javascript:;" class="save-btn disable hd">저장</a>
 		</div>
 		<div class="topLine"></div>
@@ -81,7 +82,7 @@
 		<!-- 筛选器下测已选项框体（占位元素，勿动） -->
 		<ul class="selector-list-containor">
 			<p style="display: none;"></p>
-			<p class="selector-hint">선택한 항목이 없습니다</p>
+			<p class="selector-hint">선택한 항목이 없습니다.</p>
 		</ul>
 		<!-- 筛选器筛选列表以及筛选项 -->
 		<div class="options-containor">
@@ -506,7 +507,7 @@
 				var markedLog = []
 				for (var i = 0; i < localStorage.length; i++) {
 					var key = localStorage.key(i); //获取本地存储的Key
-					if (localStorage.getItem(key)==1) markedLog.push(key); //所有value
+					if (localStorage.getItem(key) == 1) markedLog.push(key); //所有value
 				}
 				var eleLink = document.createElement('a');
 				eleLink.download = 'markers.json';
